@@ -1,4 +1,5 @@
--- Mie 17.08.2022 :) ~ @ssebas.andres
+-- Mie 17.08.2022 - Labo Algebra I :)
+-- @ssebas.andres
 
 -- funcion 1
 doble x = 2 * x
