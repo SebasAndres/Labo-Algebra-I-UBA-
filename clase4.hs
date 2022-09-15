@@ -1,7 +1,7 @@
+-- Mier. 14-09-22 - Labo Algebra I
+-- @ssebas.andres
 
-{-  Clase 4. Sebastian Andres.
-    Mie 13.09.22 - Sumatorias
--} 
+-- SUMATORIAS
 
 sumatoria :: Int -> Int
 sumatoria 1 = 1
