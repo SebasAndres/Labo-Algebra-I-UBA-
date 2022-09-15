@@ -1,6 +1,8 @@
 -- Mier. 07-09-22 - Labo Algebra I
 -- @ssebas.andres
 
+-- RECURSION
+
 -- factorial :: Int -> Int
 factorial n | n == 0 = 1
             | otherwise = n * factorial (n-1) 
