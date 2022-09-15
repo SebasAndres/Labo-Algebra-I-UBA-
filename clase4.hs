@@ -2,7 +2,6 @@
 -- @ssebas.andres
 
 -- SUMATORIAS
-
 sumatoria :: Int -> Int
 sumatoria 1 = 1
 sumatoria n = n + sumatoria(n-1)
@@ -11,7 +10,6 @@ sumatoria_cerrada :: Int -> Int
 sumatoria_cerrada n = div (n * (n + 1)) 2
 
 -- Ejercicios (Parte 1)
-
 f1 0 = 1
 f1 n = f1(n-1) + 2^n
 
@@ -34,7 +32,6 @@ f4 0 q = 1
 f4 n q = f3 n q - f2 (n-1) q 
 
 -- Ejercicios (Parte 2)
-
 fact 0 = 1
 fact n = fact (n-1) * n
 
@@ -43,7 +40,6 @@ eAprox 0 = 1
 eAprox j = eAprox(j-1) + 1 / fromIntegral (fact(j))
 
 -- Ejercicio 3
-
 funcion 1 1 = 1
 funcion 0 0 = 0
 funcion _ 0 = 0
@@ -58,9 +54,7 @@ auxQ m = auxQ (m-1) + 1/ m
 sumaRacionales n m = (n * (n+1) / 2) * auxQ m
 
 -- Tarea
-
 g1 i n = f2 i n - f2 i i 
-
 g2 n = funcion n n 
 
 auxx :: Int -> Int
