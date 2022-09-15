@@ -1,8 +1,5 @@
-{-
-
-Mie 07.09.22 - Recursion
-
--} 
+-- Mier. 07-09-22 - Labo Algebra I
+-- @ssebas.andres
 
 -- factorial :: Int -> Int
 factorial n | n == 0 = 1
