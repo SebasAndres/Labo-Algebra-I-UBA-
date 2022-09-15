@@ -66,5 +66,4 @@ g2 n = funcion n n
 auxx :: Int -> Int
 auxx i | mod i 2 == 0 = 2^i
        | otherwise = 0
-
-g3 n = auxx (n-1) +auxx n
+g3 n = auxx (n-1) + auxx n
