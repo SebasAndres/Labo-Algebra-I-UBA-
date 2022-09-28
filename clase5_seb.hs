@@ -92,6 +92,7 @@ sumaPrimos n | n == 0 = 0
              | nEsimoPrimo(n) + nEsimoPrimo(n-1)
 
 -- Ejercicios Tarea
+-- La idea es recorrer todos los numeros desde n1 a n2 (o viceversa) y dar el sumaDivisores(i) maximo
 tomaValorMax :: Int -> Int -> Int 
 tomaValorMax n1 n2 = tomaValorMaxDesde n1 n2 n1
 
