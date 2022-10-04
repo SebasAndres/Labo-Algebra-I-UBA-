@@ -1,6 +1,4 @@
--- Apellido Nombre #1
--- Apellido Nombre #2
--- Apellido Nombre #3
+-- Sebastian Andres :)
 
 -- EJERCICIO 1. sonCoprimos
 -- Idea: Evaluar si el mcd (a, b) == 1 con el Algoritmo de Euclides
