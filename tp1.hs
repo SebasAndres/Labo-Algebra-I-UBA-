@@ -1,5 +1,3 @@
--- Sebastian Andres :)
-
 -- EJERCICIO 1. sonCoprimos
 -- Idea: Evaluar si el mcd (a, b) == 1 con el Algoritmo de Euclides
 
