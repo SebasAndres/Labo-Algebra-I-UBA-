@@ -10,13 +10,12 @@ sonCoprimos a b | mcd a b == 1 = True
 -- (a : b) = (b : a mod b) = ... = (n : 0) = n || (n : 1) = 1
 mcd :: Integer -> Integer -> Integer 
 mcd a b | b == 0 = abs(a)
-        | b == 1 = 1
         | otherwise = mcd (b) (mod a b)
 
 -- Ejercicio 2
 -- Idea: Resolvemos el problema para un A generico (a-pseudoprimos) y luego lo aplicamos para 2-pseudoprimos.
 a_pseudoprimo :: Integer -> Integer -> Bool
-a_pseudoprimo a n | (esPrimo (n) == False) && (mod (a^(n-1)-1) n == 0) && (n /= 1) = True
+a_pseudoprimo a n | (esPrimo (n) == False) && (mod (a^(n-1)-1) n == 0) = True
                   | otherwise = False 
 
 es2Pseudoprimo :: Integer -> Bool
