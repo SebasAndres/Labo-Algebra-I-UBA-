@@ -142,3 +142,6 @@ esDivisorDesde theta arg n k | theta == arg * toFloat(k) = True
 --    Ejemplo: Ver funcion potencia [1.9]
 -- 2) RaizCuadraticaCompleja? [2.6]
 -- 3) SonRaicesNEsimas? [3.2]
+-- 4) Argumento
+
+
