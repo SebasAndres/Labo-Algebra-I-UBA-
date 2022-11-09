@@ -36,7 +36,7 @@ norma a = sqrt ((re a)^2 + (im a)^2)
 angulo :: Complejo -> Float
 angulo (a,b) | a > 0 && b > 0 = acos (a / norma(a,b))
              | a < 0 && b > 0 = acos (a / norma(a,b))
-             | a < 0 && b < 0 = atan (a / b) + pi   
+             | a < 0 && b < 0 = acos (a / norma(a,b)) -- atan (a / b) + pi   
              | a > 0 && b < 0 = atan (a / b) + 2*pi
              | b == 0 && a > 0 = 0
              | b == 0 && a < 0 = pi 
@@ -77,7 +77,8 @@ distancia z w = modulo ((re z - re w), (im z - im w))
 -- [2.3]
 -- Chequear!
 argumento :: Complejo -> Float 
-argumento z = reducir (angulo z)
+argumento z = angulo z
+
 -- reducir por 2*pi da error por redondear
 reducir :: Float -> Float
 reducir n | n >= 2*pi = reducir (n-2*pi)
@@ -90,11 +91,16 @@ pasarACartesianas r t = (r*cos(t), r*sin(t))
 -- [2.5]
 raizCuadrada :: Complejo -> (Complejo, Complejo)
 raizCuadrada z = (((modulo(z)**(1/n)*cos(argumento(z)/n)), modulo(z)**(1/n)*sin(argumento(z)/n)),
-                  ((modulo(z)**(1/n)*cos((argumento(z)+2*pi)/n)), modulo(z)**(1/n)*sin(argumento(z)+2*pi)/n))
+                  ((modulo(z)**(1/n)*cos((argumento(z)+2*pi)/n)), modulo(z)**(1/n)*sin((argumento(z)+2*pi)/n)))
                   where n = 2
 
-raizCuadraticaCompleja :: Complejo -> Complejo -> Complejo -> (Complejo,Complejo)
+raicesCuadraticaCompleja :: Complejo -> Complejo -> Complejo -> (Complejo,Complejo)
+raicesCuadraticaCompleja a b c = (cociente (suma b (fst (raizCuadrada w))) (producto (2, 0) a),
+                                  cociente (suma b (snd (raizCuadrada w))) (producto (2, 0) a))
+                                where w = resta (potencia b 2) (producto (producto (4, 0) a) c) 
 
+resta :: Complejo -> Complejo -> Complejo
+resta z w = (fst z - fst w, snd z - snd w)
 
 -- Ejercicio 3: 
 -- [3.1]
@@ -136,12 +142,10 @@ esDivisorDesde theta arg n k | theta == arg * toFloat(k) = True
                              | k == n = False
                              | otherwise = esDivisorDesde theta arg n (k+1)
 
-
 -- Dudas: 
 -- 1) Como soluciono el problema de tipos (multiplicar float con int, redondeos en trigonometricas, etc..)
 --    Ejemplo: Ver funcion potencia [1.9]
 -- 2) RaizCuadraticaCompleja? [2.6]
 -- 3) SonRaicesNEsimas? [3.2]
 -- 4) Argumento
-
 
