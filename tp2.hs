@@ -32,16 +32,12 @@ conjugado a = (re a, - (im a))
 norma :: Complejo -> Float
 norma a = sqrt ((re a)^2 + (im a)^2)
 
--- verificar // mejorar
 angulo :: Complejo -> Float
-angulo (a,b) | a > 0 && b > 0 = acos (a / norma(a,b))
-             | a < 0 && b > 0 = acos (a / norma(a,b))
-             | a < 0 && b < 0 = acos (a / norma(a,b)) -- atan (a / b) + pi   
-             | a > 0 && b < 0 = atan (a / b) + 2*pi
-             | b == 0 && a > 0 = 0
-             | b == 0 && a < 0 = pi 
-             | a == 0 && b < 0 = 3/2 * pi
-             | a == 0 && b > 0 = pi / 2
+angulo (x,y) | x >= 0 && y >= 0 && modulo(x,y) /= 0 = asin (y / modulo (x,y)) -- Cuad 1 
+             | x < 0 && y >= 0 && modulo(x,y) /= 0 = asin (abs(x) / modulo (x,y)) + pi/2 -- Cuad 2
+             | x <= 0 && y <= 0 && modulo(x,y) /= 0 = asin (abs(y) / modulo(x,y)) + pi -- Cuad 3
+             | x > 0 && y < 0 = 2*pi - asin(abs(y) / modulo (x, y)) -- Cuad 4
+
 -- [1.6]
 inverso :: Complejo -> Complejo
 inverso a = ((re a) / (norma a)^2 , (- im a) / (norma a)^2)
@@ -52,7 +48,6 @@ cociente z w = ((norma(z)/norma(w))*cos(angulo(z)-angulo(w)),
                 (norma(z)/norma(w))*sin(angulo(z)-angulo(w)))
 
 -- [1.8]
--- fijarse si hay otra forma de cambiar el tipo
 potencia :: Complejo -> Integer -> Complejo
 potencia z k = ((norma(z)^k)*cos(toFloat(k)*angulo z), (norma(z)^k)*sin(toFloat(k)*angulo z))
 
@@ -75,14 +70,8 @@ distancia :: Complejo -> Complejo -> Float
 distancia z w = modulo ((re z - re w), (im z - im w))
 
 -- [2.3]
--- Chequear!
 argumento :: Complejo -> Float 
 argumento z = angulo z
-
--- reducir por 2*pi da error por redondear
-reducir :: Float -> Float
-reducir n | n >= 2*pi = reducir (n-2*pi)
-          | otherwise = n
 
 -- [2.4]
 pasarACartesianas :: Float -> Float -> Complejo
@@ -94,9 +83,10 @@ raizCuadrada z = (((modulo(z)**(1/n)*cos(argumento(z)/n)), modulo(z)**(1/n)*sin(
                   ((modulo(z)**(1/n)*cos((argumento(z)+2*pi)/n)), modulo(z)**(1/n)*sin((argumento(z)+2*pi)/n)))
                   where n = 2
 
+-- [2.6]
 raicesCuadraticaCompleja :: Complejo -> Complejo -> Complejo -> (Complejo,Complejo)
-raicesCuadraticaCompleja a b c = (cociente (suma b (fst (raizCuadrada w))) (producto (2, 0) a),
-                                  cociente (suma b (snd (raizCuadrada w))) (producto (2, 0) a))
+raicesCuadraticaCompleja a b c = (cociente (suma (producto (-1,0) b) (fst (raizCuadrada w))) (producto (2, 0) a),
+                                  cociente (suma (producto (-1,0) b) (snd (raizCuadrada w))) (producto (2, 0) a))
                                 where w = resta (potencia b 2) (producto (producto (4, 0) a) c) 
 
 resta :: Complejo -> Complejo -> Complejo
@@ -121,30 +111,7 @@ sonRaicesNEsimas n (c:cs) error | tiendeAUno c n error = sonRaicesNEsimas n cs e
                                 | otherwise = False
 
 tiendeAUno :: Complejo -> Integer -> Float -> Bool 
-tiendeAUno z n error | esDivisor (2*pi/n**2) (argumento z) n && abs ((modulo z)^n - 1) < error = True
+tiendeAUno z n error | modulo ( resta zn (1, 0) ) < error = True
                      | otherwise = False
-
--- z = r*e^(theta*i) 
--- z^n = r^n * e^(n*theta*i)
--- 1 = 1^n * e^(2*pi*k/n)
-
--- chequear que 
---     r^n == 1
---     n*theta = 2*pi*k/n <--> theta = (2*pi/n^2) * k, k = {0, .., n-1} 
-
--- Existe k = {0, .. , n-1} tal que theta = k * arg?
-
-esDivisor :: Float -> Float -> Integer -> Bool
-esDivisor theta arg n = esDivisorDesde theta arg n 0
-
-esDivisorDesde :: Float -> Float -> Integer -> Integer -> Bool
-esDivisorDesde theta arg n k | theta == arg * toFloat(k) = True
-                             | k == n = False
-                             | otherwise = esDivisorDesde theta arg n (k+1)
-
--- Dudas: 
--- 1) Como soluciono el problema de tipos (multiplicar float con int, redondeos en trigonometricas, etc..)
---    Ejemplo: Ver funcion potencia [1.9]
--- 2) SonRaicesNEsimas? [3.2]
--- 3) Argumento
+                      where zn = potencia z n 
 
