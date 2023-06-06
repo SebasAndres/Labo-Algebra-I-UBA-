@@ -1,4 +1,5 @@
--- clase 5 Labo Algebra I - 28-09-22 - Sebastian Andres
+-- Mie 28-09-22 
+-- Recursion
 
 -- suma todos los divisores de x hasta y
 sumaDivisoresHasta :: Int -> Int -> Int

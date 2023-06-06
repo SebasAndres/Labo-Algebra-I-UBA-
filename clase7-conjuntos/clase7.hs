@@ -1,5 +1,4 @@
--- Clase 7 - Sebastian Andres - 12/10/22
-
+-- Mie 12-10-22
 -- Conjuntos
 -- El orden de los elementos es relevante para las listas, pero no para conjuntos.
 

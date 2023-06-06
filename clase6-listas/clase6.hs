@@ -1,4 +1,5 @@
--- Clase 6 - Listas - 05-10-22 - Sebastian Andres
+-- Mie 05-10-22
+-- Listas
 
 -- Las listas tienen tamaño dinamico
 -- head :: [a, b, c] -> a -- devuelve el primer elto

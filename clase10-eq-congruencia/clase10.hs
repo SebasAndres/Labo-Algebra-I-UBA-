@@ -1,4 +1,4 @@
--- Clase 10 - 09/11/22
+-- 09-11-22
 
 -- Recuerdo Alg. Euclides Extendido:
 --                               g=mcd       s       t

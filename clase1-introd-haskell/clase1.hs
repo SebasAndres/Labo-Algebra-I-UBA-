@@ -1,5 +1,5 @@
--- Mie 17.08.2022 - Labo Algebra I :)
--- @ssebas.andres
+-- Mie 17.08.2022 
+-- Introduccion a Haskell
 
 -- funcion 1
 doble x = 2 * x

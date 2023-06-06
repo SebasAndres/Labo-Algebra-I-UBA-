@@ -1,9 +1,9 @@
--- Clase 9 - Algoritmo de la Division (02/11/22)
+-- Mie 02-11-22
+-- Algoritmo de la Division
 
 type Set a = [a]
 
 -- Alg. Division             
---                          q    r
 division :: Int -> Int -> (Int, Int)
 division a d | a < d = (0, a)
              | otherwise = (fst (division (a-d) d)+1, snd (division (a-d) d))

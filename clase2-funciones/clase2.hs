@@ -1,5 +1,4 @@
 -- Mier. 31-08-22 - Labo Algebra I
--- @ssebas.andres
 
 {-
 

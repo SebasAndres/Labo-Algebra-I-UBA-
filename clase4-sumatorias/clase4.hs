@@ -1,5 +1,4 @@
 -- Mier. 14-09-22 - Labo Algebra I
--- @ssebas.andres
 
 -- SUMATORIAS
 sumatoria :: Int -> Int
