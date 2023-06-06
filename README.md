@@ -1,2 +1,6 @@
-# Labo-Algebra-I-UBA-
-archivos de la clase, con ejercicios
+# Labo-Algebra-I-UBA
+
+Archivos de las clases, con ejercicios resueltos.
+> Cursada Segundo Cuatrimestre 2022
+
+
